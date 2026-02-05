@@ -155,4 +155,3 @@ Este laboratório demonstrou uma cadeia completa de comprometimento, explorando 
 - Binário SUID vulnerável
 - Falhas de hardening no sistema
 - O sistema foi comprometido integralmente, culminando em acesso root.
->>>>>>> 79563f5 (Relatório Técnico)
