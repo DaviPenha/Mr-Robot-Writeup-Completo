@@ -38,7 +38,7 @@ Análise técnica:
 🌐 2. Enumeração de Diretórios Web
 
 Com base no reconhecimento inicial, foi realizada enumeração de diretórios para identificar recursos ocultos ou não indexados.
-*print
+<img width="1280" height="800" alt="gobuster" src="https://github.com/user-attachments/assets/7a6e1735-f585-48b9-b1e7-e72d0ed373da" />
 Diretórios relevantes identificados:
 /wp-login.php
 /wp-admin/
