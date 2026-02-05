@@ -26,7 +26,7 @@ Este writeup foi elaborado com foco em avaliação técnica, demonstrando racioc
 🔎 1. Reconhecimento de Rede
 
 A primeira etapa consistiu na identificação dos serviços expostos pelo host alvo
-*print
+<img width="1280" height="800" alt="nmap" src="https://github.com/user-attachments/assets/74bef42f-d97c-43f4-a64e-459ad3cc19a6" />
 Análise técnica:
 
 - A porta 22 (SSH) encontra-se fechada, descartando acesso remoto direto.
@@ -58,23 +58,23 @@ Análise técnica:
 🤖 3. Análise do robots.txt
 
 Acessando o arquivo:
-*print
+<img width="1280" height="800" alt="robots txt" src="https://github.com/user-attachments/assets/fcce1e9c-119d-4082-808b-9899dd6394f0" />
 Análise técnica:
 - O arquivo robots.txt revelou recursos sensíveis explicitamente ocultados.
 - O arquivo fsocity.dic aparenta ser uma wordlist customizada, útil para brute force ou enumeração de usuários.
 - O arquivo key-1-of-3.txt representa uma das flags do desafi
 ---
 🔐 4. Vazamento de Credenciais (Base64)
-*print
+<img width="1280" height="800" alt="license" src="https://github.com/user-attachments/assets/2a6beaba-6c9f-4775-9dcc-5f8406b23fcd" />
 Decodificação:
-*print
+<img width="1280" height="800" alt="base64decoding" src="https://github.com/user-attachments/assets/6f16c2e2-030d-41bd-9bee-7512fb7d0837" />
 Análise técnica:
 - Credenciais armazenadas em Base64 representam ofuscação, não criptografia.
 - Vazamento direto de usuário e senha caracteriza falha grave de segurança.
 - As credenciais foram testadas no painel administrativo do WordPress.
 ---
 🖥️ 5. Acesso Administrativo ao WordPress
-*print
+<img width="1280" height="800" alt="acessowordpress" src="https://github.com/user-attachments/assets/b38618a0-cb22-4931-8c07-2d1168130e60" />
 Credenciais válidas:
 Usuário: elliot
 Senha: ER28-0652
@@ -86,9 +86,9 @@ Acesso administrativo concede controle total sobre:
 Isso torna possível a obtenção de Remote Code Execution (RCE).
 ---
 💣 6. Execução Remota de Código (RCE)
-*print
+<img width="1280" height="800" alt="codigophp" src="https://github.com/user-attachments/assets/f1788ffa-3338-4a25-acea-fa556507d8ed" />
 Utilizando o editor de temas do WordPress foi inserido o seguinte payload PHP e simultaneamente, foi iniciado um listener na máquina atacante
-*print
+<img width="1280" height="800" alt="nc" src="https://github.com/user-attachments/assets/1e12aad8-d538-4d68-b5da-e9233afabd9a" />
 Resultado:
 - Reverse shell obtida com sucesso.
 - Usuário inicial: daemon
@@ -101,9 +101,9 @@ A shell obtida via Netcat apresentava limitações típicas:
 - falta de controle de terminal
 
 Antes de tentar estabilizar a sessão, foi realizada enumeração para verificar a presença de interpretadores disponíveis:
-*print
+<img width="1280" height="800" alt="procurandopython" src="https://github.com/user-attachments/assets/eac9797a-cb0b-42fa-830c-aac397d69e2c" />
 O Python estava disponível no sistema, permitindo o uso do módulo pty.
-*print
+<img width="1280" height="800" alt="spwanshell" src="https://github.com/user-attachments/assets/7e1776e5-b203-415d-bcbc-094494b46d14" />
 Resultado:
 - Shell totalmente interativa
 - Ambiente estável para enumeração e escalonamento de privilégios
@@ -127,22 +127,22 @@ Análise técnica:
 - Foi realizada a quebra da hash utilizando base pública.
 
 Senha recuperada:
-*print
-
+<img width="1280" height="800" alt="senha" src="https://github.com/user-attachments/assets/57c7f31c-834d-4cdd-855a-8eecf6c0ebf0" />
 Login realizado:
-*print 
+<img width="1280" height="800" alt="root" src="https://github.com/user-attachments/assets/f427c7bc-ce39-4b8e-8f35-6b25f229aac1" />
+
 ---
 🚀 9. Escalação de Privilégios – Root
 Com acesso ao usuário robot, foi possível realizada enumeração de binários SUID:
-*print find
+
 Binário relevante identificado:
 /usr/local/bin/nmap
-
+<img width="1280" height="800" alt="find" src="https://github.com/user-attachments/assets/285680c3-0afc-462d-a8ec-145045b05b96" />
 Análise técnica:
 Versões antigas do Nmap possuem modo interativo vulnerável.
 Quando configurado como SUID, permite execução de comandos como root
 Exploração:
-*print
+<img width="1280" height="800" alt="root" src="https://github.com/user-attachments/assets/cf3ad96e-5d49-465b-b6a9-b46aad39b738" />
 Escalação de privilégios concluída com sucesso.
 ---
 🏁 Conclusão Técnica
